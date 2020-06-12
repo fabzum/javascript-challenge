@@ -14,8 +14,8 @@ data.forEach((ufoSighting) => {
 
 
 var button = d3.select("#filter-btn");
-var form = d3.select("#filter");
 var reset = d3.select("#reset-btn");
+var form = d3.select("#filter");
 var ufoImage = d3.select("#ufo-button");
 
 button.on("click", runEnter);
@@ -31,10 +31,15 @@ function runEnter() {
     
     tbody.html("");
 
-    var inputElement = d3.select("#datetime");
+    var inputElement = d3.select("#input");
     var inputValue = inputElement.property("value");
 
-    var filteredData = tableData.filter(ufoSighting => ufoSighting.datetime === inputValue);
+    var filteredData = tableData.filter(ufoSighting => ufoSighting.datetime === inputValue ||
+                                                       ufoSighting.city === inputValue ||
+                                                       ufoSighting.state === inputValue ||
+                                                       ufoSighting.country === inputValue ||
+                                                       ufoSighting.shape === inputValue
+    );
     
     
     filteredData.forEach((selection) => {
@@ -59,4 +64,3 @@ function tableReset () {
         });
     });
 };
-
